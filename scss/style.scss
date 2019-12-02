@@ -120,3 +120,48 @@ octagon;
 /**********************************************
  * YOUR CODE BELOW
  **********************************************/
+ 
+ @mixin shapeColor ($shape, $color) {
+  @if ($shape == 'square'){
+    @extend %square;
+    background-color: $color;
+  }@else if ($shape == 'circle'){
+    @extend %circle;
+    background-color: $color;
+  }@else if ($shape == 'pentagon'){
+    @extend %pentagon;
+    border-color: $color transparent;
+    &::before {
+     border-color: transparent transparent $color;
+    }
+  }@else if ($shape == 'hexagon'){
+    @extend %hexagon;
+    background: $color;
+    &::before {
+     border-bottom: 25px solid $color;
+    }
+    &::after {
+     border-top: 25px solid $color;
+    }
+  }@else if ($shape == 'octagon'){
+    @extend %octagon;
+    background: $color;
+    &::before {
+     border-bottom: 29px solid $color;
+    }
+    &::after {
+     border-top: 29px solid $color;
+    }
+  }
+}
+
+@each $shape in $shapes {
+  @each $color in $colors {
+    .#{$shape}-#{$color} {
+      @include shapeColor($shape, $color)
+    }
+  }
+}
+
+
+
