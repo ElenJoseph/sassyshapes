@@ -11,5 +11,3 @@ for (const shape of shapes){
 }
 
 $shapes.innerHTML = shapeColor.join('')
-
-// Elen Work
